@@ -4,12 +4,16 @@ const {
   submitSurvay
 } = require("../controllers/userController");
 const { predictBedtime, addToken } = require("../controllers/BedtimePredictController");
+const { testNotification } = require("../controllers/NotificationController");
 
 
 
 router.route("/submit_survay/:_id").post(submitSurvay);
 router.route("/predict_bedtime/:_id/:stepCount").get(predictBedtime);
-router.route("/token/:_id").post(addToken);
+
+router.route("/submit_token/:_id").post(addToken);
+
+router.get('/test-notification', testNotification);
 
 
 

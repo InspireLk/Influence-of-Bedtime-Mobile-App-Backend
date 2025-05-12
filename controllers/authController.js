@@ -99,6 +99,7 @@ const register = asyncHandler(async (req, res) => {
     if (user) {
       res.status(201).json({
         user: user,
+        accessToken: genarateToken(user._id),
         success:true,
         message:'User Registered'
       });

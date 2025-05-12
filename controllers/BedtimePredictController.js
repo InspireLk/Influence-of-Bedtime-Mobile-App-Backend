@@ -9,6 +9,18 @@ const addToken = asyncHandler( async(req, res) => {
   const { token } = req.body;
   const { _id } = req.params;
 
+  console.log('==============token======================');
+  console.log(token);
+  console.log('====================================');
+
+
+  if(!token){
+    return res.status(400).send({ message: "token is required" });
+  }
+  if(!_id){
+    return res.status(400).send({ message: "Id is required" });
+  }
+
   try {
     const user = await User.findOneAndUpdate(
       { _id: _id }, // Assuming user is authenticated
@@ -16,15 +28,21 @@ const addToken = asyncHandler( async(req, res) => {
       { new: true }
     );
 
-    res.json({ success: true, message: "Push token saved successfully", user });
+    const data = {
+      "expo_token":token,
+      "user":user
+    }
+
+    res.status(200).json({ success: true, message: "Push token saved successfully", data:data });
   } catch (error) {
-    res.status(500).json({ success: false, error: "Error saving push token" });
+    res.status(500).json({ success: false, message: "Error saving push token", data:null });
   }
 
 })
 
 const predictBedtime = asyncHandler(async (req, res) => {
-  
+
+
     const {_id,stepCount} = req.params
   
     if (!_id) {
@@ -133,6 +151,12 @@ const predictBedtime = asyncHandler(async (req, res) => {
           if (data) {
     
             const output = data.toString();
+
+            await User.findOneAndUpdate(
+              { _id: _id }, // Assuming user is authenticated
+              { predictedBedtimeHours: output },
+              { new: true }
+            );
 
             console.log('=============output=======================');
             console.log(output);

@@ -26,6 +26,8 @@ const userSchema = mongoose.Schema(
       },
     ],
     expoPushToken: { type: "String", required: false, default:'Avarage' },
+    predictedBedtimeHours: {type: "String", required: false, default:"0.0" },
+    timezone: { type: String, default: 'UTC' } 
    
   },
   {
