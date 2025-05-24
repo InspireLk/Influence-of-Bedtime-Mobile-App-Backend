@@ -131,22 +131,29 @@ const predictBedtime = asyncHandler(async (req, res) => {
         PYTHONPATH: pythonEnvPath,
       };
 
+      // FOR Mac COMMENT THIS and uncomment below one
+      const pythonInterpreterPath = path.join(
+        __dirname, 
+        "..", 
+        "ML", 
+        "BedtimePredict", 
+        "sleep_env",
+        "bin",
+        "python3",
+      );
+
+      // FOR WINDOWS UNCOMMENT THIS and comment above one
+
       // const pythonInterpreterPath = path.join(
       //   __dirname, 
       //   "..", 
       //   "ML", 
       //   "BedtimePredict", 
       //   "sleep_env",
-      //   "bin",
-      //   "python3",
+      //   "Scripts",
+      //   "python.exe",
       // );
-      const pythonInterpreterPath = path.join(
-      __dirname, 
-      "..", 
-      "venv", 
-      "bin", 
-      "python3"
-    );
+
 
 
 
