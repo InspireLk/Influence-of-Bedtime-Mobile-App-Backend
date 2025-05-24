@@ -140,7 +140,14 @@ const predictBedtime = asyncHandler(async (req, res) => {
       //   "bin",
       //   "python3",
       // );
-      const pythonInterpreterPath = "python3"; 
+      const pythonInterpreterPath = path.join(
+      __dirname, 
+      "..", 
+      "venv", 
+      "bin", 
+      "python3"
+    );
+
 
 
       const pythonProcess = spawn(pythonInterpreterPath, [
