@@ -19,7 +19,7 @@ RUN pip3 install --break-system-packages -r ML/BedtimePredict/requirements.txt
 COPY . .
 
 # Expose the port the app runs on
-EXPOSE 5005
+EXPOSE 8080
 
 # Run the Node.js app
 CMD ["node", "index.js"]
