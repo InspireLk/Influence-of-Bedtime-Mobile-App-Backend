@@ -17,7 +17,7 @@ const {initializeAllUserSchedules, cleanupJobs, logScheduledJobs} = require("./s
 dotenv.config();
 connectDB();
 
-const PORT = process.env.PORT || 5005;
+const PORT = process.env.PORT ||  5005;
 
 app.use(
   cors({
@@ -33,17 +33,20 @@ app.get("/", (req, res) => {
   res.send("Api is running Bedtime Project");
 });
 
-const server = app.listen(
-  PORT,
-  console.log(`Server running on PORT ${PORT}...`.yellow.bold)
-);
-if (server) {
+const server = app.listen(PORT, () => {
+  console.log(`Server running on PORT ${PORT}...`.yellow.bold);
   console.log("Success".green.bold);
-}
 
-initializeAllUserSchedules().then(() => {
-  logScheduledJobs();
+  // Initialize background jobs after server is ready
+  initializeAllUserSchedules().then(() => {
+    logScheduledJobs();
+  });
 });
+
+
+// initializeAllUserSchedules().then(() => {
+//   logScheduledJobs();
+// });
 app.use(`/api/auth`, authRoutes);
 app.use(`/api/face`, faceScanRoutes);
 app.use(`/api/user`, userRoutes);
