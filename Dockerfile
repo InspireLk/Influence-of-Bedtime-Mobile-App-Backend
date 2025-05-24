@@ -13,7 +13,7 @@ RUN npm install
 
 # Copy Python dependencies
 COPY ML/BedtimePredict/requirements.txt ./ML/BedtimePredict/requirements.txt
-RUN pip3 install -r ML/BedtimePredict/requirements.txt
+RUN pip3 install --break-system-packages -r ML/BedtimePredict/requirements.txt
 
 # Copy the entire project
 COPY . .
