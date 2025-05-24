@@ -17,7 +17,7 @@ const {initializeAllUserSchedules, cleanupJobs, logScheduledJobs} = require("./s
 dotenv.config();
 connectDB();
 
-const PORT = 5001;
+const PORT = process.env.PORT ||  5005;
 
 app.use(
   cors({
