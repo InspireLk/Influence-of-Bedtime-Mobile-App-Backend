@@ -131,15 +131,17 @@ const predictBedtime = asyncHandler(async (req, res) => {
         PYTHONPATH: pythonEnvPath,
       };
 
-      const pythonInterpreterPath = path.join(
-        __dirname, 
-        "..", 
-        "ML", 
-        "BedtimePredict", 
-        "sleep_env",
-        "bin",
-        "python3",
-      );
+      // const pythonInterpreterPath = path.join(
+      //   __dirname, 
+      //   "..", 
+      //   "ML", 
+      //   "BedtimePredict", 
+      //   "sleep_env",
+      //   "bin",
+      //   "python3",
+      // );
+      const pythonInterpreterPath = "python3"; 
+
 
       const pythonProcess = spawn(pythonInterpreterPath, [
         option.url,
